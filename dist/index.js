@@ -25547,10 +25547,9 @@ __nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 const main = async () => {
     try {
         const inputs = {
-            message: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("message"),
+            secret: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("secret"),
         };
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(inputs.message);
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("message", inputs.message);
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(inputs.secret.split("").join("\u200B"));
     }
     catch (error) {
         if (error instanceof Error) {
