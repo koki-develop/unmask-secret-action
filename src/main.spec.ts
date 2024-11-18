@@ -13,19 +13,21 @@ describe("main function", () => {
     vi.restoreAllMocks();
   });
 
-  it("should output the message correctly", async () => {
-    const message = "TEST_MESSAGE";
+  it("should process secret input correctly", async () => {
+    const secret = "test-secret";
+    const expectedOutput =
+      "t\u200Be\u200Bs\u200Bt\u200B-\u200Bs\u200Be\u200Bc\u200Br\u200Be\u200Bt";
 
-    vi.spyOn(core, "getInput").mockReturnValue(message);
+    vi.spyOn(core, "getInput").mockReturnValue(secret);
 
     await main();
 
-    expect(core.info).toHaveBeenCalledWith(message);
-    expect(core.setOutput).toHaveBeenCalledWith("message", message);
+    expect(core.getInput).toHaveBeenCalledWith("secret");
+    expect(core.info).toHaveBeenCalledWith(expectedOutput);
   });
 
   it("should call core.setFailed when an error occurs", async () => {
-    const errorMessage = "SOMETHING_WRONG";
+    const errorMessage = "Failed to get input";
 
     vi.spyOn(core, "getInput").mockImplementation(() => {
       throw new Error(errorMessage);
@@ -34,5 +36,13 @@ describe("main function", () => {
     await main();
 
     expect(core.setFailed).toHaveBeenCalledWith(errorMessage);
+  });
+
+  it("should throw error when error is not instance of Error", async () => {
+    vi.spyOn(core, "getInput").mockImplementation(() => {
+      throw "unexpected error";
+    });
+
+    await expect(main()).rejects.toBe("unexpected error");
   });
 });
