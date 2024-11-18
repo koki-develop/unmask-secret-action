@@ -1,20 +1,14 @@
-name: Hello World
-description: Greet someone and record the time
+name: Unmask Secret Action
+description: Unmask a secret value.
 
 branding:
-  icon: send
-  color: white
+  icon: unlock
+  color: gray-dark
 
 inputs:
-  message:
-    description: |-
-      The message to echo.
-    required: false
-    default: "Hello, world!"
-
-outputs:
-  message:
-    description: The message that was echoed.
+  secret:
+    description: The secret value to unmask
+    required: true
 
 runs:
   using: node20
