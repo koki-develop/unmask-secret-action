@@ -18,12 +18,28 @@ jobs:
       - uses: ./.github/actions/setup
       - run: bun run lint
 
-  # NOTE: If you want to run the action to test the changes, you can uncomment the following job
-  # run-action:
-  #   needs:
-  #     - test
-  #     - lint
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: ./
+  run-action:
+    needs:
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Print Secret
+        run: echo "${EXAMPLE_SECRET}"
+        env:
+          EXAMPLE_SECRET: ${{ secrets.EXAMPLE_SECRET }}
+      - name: Print Secret with Action
+        uses: ./
+        with:
+          secret: ${{ secrets.EXAMPLE_SECRET }}
+
+      - name: Print Multiline Secret
+        run: echo "${MULTILINE_SECRET}"
+        env:
+          MULTILINE_SECRET: ${{ secrets.MULTILINE_SECRET }}
+      - name: Print Multiline Secret with Action
+        uses: ./
+        with:
+          secret: ${{ secrets.MULTILINE_SECRET }}
