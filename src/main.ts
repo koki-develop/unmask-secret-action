@@ -3,11 +3,10 @@ import * as core from "@actions/core";
 export const main = async () => {
   try {
     const inputs = {
-      message: core.getInput("message"),
+      secret: core.getInput("secret"),
     } as const;
 
-    core.info(inputs.message);
-    core.setOutput("message", inputs.message);
+    core.info(inputs.secret.split("").join("\u200B"));
   } catch (error) {
     if (error instanceof Error) {
       core.setFailed(error.message);
