@@ -14,6 +14,8 @@ Unmask a secret value.
     secret: ${{ secrets.SOME_SECRET }}
 ```
 
+![](./assets/demo.png)
+
 ## LICENSE
 
 [MIT](./LICENSE)
