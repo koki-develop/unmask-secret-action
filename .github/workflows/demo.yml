@@ -7,6 +7,6 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - uses: koki-develop/unmask-secret-action@v1
+      - uses: koki-develop/unmask-secret-action@5145cc8c5b2d414afd4fa44f96914ca70473bb07 # v1.0.0
         with:
           secret: ${{ secrets.EXAMPLE_SECRET }}

@@ -12,6 +12,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: koki-develop/major-version-sync@v1
+      - uses: koki-develop/major-version-sync@b86eb31aef1c06d81f133799b35ace3c80ebdf0a # v1.2.0
         with:
           token: ${{ github.token }}
