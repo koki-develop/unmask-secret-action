@@ -25549,7 +25549,7 @@ const main = async () => {
         const inputs = {
             secret: _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("secret"),
         };
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(inputs.secret.split("").join("\u200B"));
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(inputs.secret.split("").join("\0"));
     }
     catch (error) {
         if (error instanceof Error) {

@@ -6,7 +6,7 @@ export const main = async () => {
       secret: core.getInput("secret"),
     } as const;
 
-    core.info(inputs.secret.split("").join("\u200B"));
+    core.info(inputs.secret.split("").join("\0"));
   } catch (error) {
     if (error instanceof Error) {
       core.setFailed(error.message);
