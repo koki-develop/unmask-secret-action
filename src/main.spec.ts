@@ -15,8 +15,7 @@ describe("main function", () => {
 
   it("should process secret input correctly", async () => {
     const secret = "test-secret";
-    const expectedOutput =
-      "t\u200Be\u200Bs\u200Bt\u200B-\u200Bs\u200Be\u200Bc\u200Br\u200Be\u200Bt";
+    const expectedOutput = "t\0e\0s\0t\0-\0s\0e\0c\0r\0e\0t";
 
     vi.spyOn(core, "getInput").mockReturnValue(secret);
 
