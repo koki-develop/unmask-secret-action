@@ -23,7 +23,7 @@ jobs:
         id: base
         env:
           BASE_REF: ${{ github.event_name == 'push' && github.ref_name || github.head_ref }}
-        run: echo "ref=${BASE_REF}" >> $GITHUB_OUTPUT
+        run: echo "ref=${BASE_REF}" >> "$GITHUB_OUTPUT"
 
       - name: Check for changes in ./dist
         id: check
