@@ -23,23 +23,27 @@ jobs:
       - test
       - lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        secret:
+          - SINGLE_LINE_SECRET
+          - |-
+            MULTI_LINE_SECRET
+            MULTI_LINE_SECRET
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: Print Secret
-        run: echo "${EXAMPLE_SECRET}"
+      - name: Mask Secret
         env:
-          EXAMPLE_SECRET: ${{ secrets.EXAMPLE_SECRET }}
+          SECRET: ${{ matrix.secret }}
+        run:
+          echo "::add-mask::${SECRET}"
+
+      - name: Print Secret
+        run: echo "${SECRET}"
+        env:
+          SECRET: ${{ matrix.secret }}
       - name: Print Secret with Action
         uses: ./
         with:
-          secret: ${{ secrets.EXAMPLE_SECRET }}
-
-      - name: Print Multiline Secret
-        run: echo "${MULTILINE_SECRET}"
-        env:
-          MULTILINE_SECRET: ${{ secrets.MULTILINE_SECRET }}
-      - name: Print Multiline Secret with Action
-        uses: ./
-        with:
-          secret: ${{ secrets.MULTILINE_SECRET }}
+          secret: ${{ matrix.secret }}
